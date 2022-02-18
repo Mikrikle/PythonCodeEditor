@@ -5,6 +5,15 @@ namespace PythonCodeEditor
 {
     public partial class mainWindow : Form
     {
+
+        public static class ErrorMessage
+        {
+            public static void Show(string text)
+            {
+                MessageBox.Show(text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private class BlueRenderer : ToolStripProfessionalRenderer
         {
             protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
@@ -24,19 +33,49 @@ namespace PythonCodeEditor
         private void Button_run_Click(object sender, EventArgs e)
         {
             string path = @"temp.py";
-            File.WriteAllText(path, codeEditor.Text);
-            File.AppendAllText(path, "\ninput('Press <Enter> to close')\n");
-            Process.Start("python.exe", Directory.GetCurrentDirectory() + @"\" + path);
+            try
+            {
+                File.WriteAllText(path, codeEditor.Text);
+                File.AppendAllText(path, "\ninput('Press <Enter> to close')\n");
+
+                try
+                {
+                    Process.Start("python.exe", Directory.GetCurrentDirectory() + @"\" + path);
+                }
+                catch (Exception error2)
+                {
+                    ErrorMessage.Show($"python.exe not found\n\n{error2.Message}");
+                }
+
+            }
+            catch (Exception error)
+            {
+                ErrorMessage.Show($"Unable to create a file\n\n{error.Message}");
+            }
         }
 
         private void Button_python_Click(object sender, EventArgs e)
         {
-            Process.Start("python.exe");
+            try
+            {
+                Process.Start("python.exe");
+            }
+            catch (Exception error)
+            {
+                ErrorMessage.Show($"python.exe not found\n\n{error.Message}");
+            }
         }
 
         private void Button_console_Click(object sender, EventArgs e)
         {
-            Process.Start("cmd.exe");
+            try
+            {
+                Process.Start("cmd.exe");
+            }
+            catch (Exception error)
+            {
+                ErrorMessage.Show($"cmd.exe not found\n\n{error.Message}");
+            }
         }
 
         private void CodeEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
