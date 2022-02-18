@@ -34,12 +34,14 @@
             this.button_python = new System.Windows.Forms.Button();
             this.button_run = new System.Windows.Forms.Button();
             this.codeEditor = new System.Windows.Forms.TextBox();
+            this.button_shortcuts = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.button_shortcuts);
             this.panel1.Controls.Add(this.button_settings);
             this.panel1.Controls.Add(this.button_console);
             this.panel1.Controls.Add(this.button_python);
@@ -120,6 +122,19 @@
             this.codeEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CodeEditor_KeyPress);
             this.codeEditor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.CodeEditor_PreviewKeyDown);
             // 
+            // button_shortcuts
+            // 
+            this.button_shortcuts.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button_shortcuts.FlatAppearance.BorderSize = 0;
+            this.button_shortcuts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_shortcuts.Image = global::PythonCodeEditor.Properties.Resources.Keyboard;
+            this.button_shortcuts.Location = new System.Drawing.Point(0, 367);
+            this.button_shortcuts.Margin = new System.Windows.Forms.Padding(0);
+            this.button_shortcuts.Name = "button_shortcuts";
+            this.button_shortcuts.Size = new System.Drawing.Size(64, 64);
+            this.button_shortcuts.TabIndex = 4;
+            this.button_shortcuts.UseVisualStyleBackColor = true;
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -144,5 +159,6 @@
         private Button button_settings;
         private Button button_console;
         private Button button_python;
+        private Button button_shortcuts;
     }
 }

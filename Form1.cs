@@ -36,11 +36,10 @@ namespace PythonCodeEditor
             try
             {
                 File.WriteAllText(path, codeEditor.Text);
-                File.AppendAllText(path, "\ninput('Press <Enter> to close')\n");
 
                 try
                 {
-                    Process.Start("python.exe", Directory.GetCurrentDirectory() + @"\" + path);
+                    Process.Start("python.exe", "-i " + Directory.GetCurrentDirectory() + @"\" + path);
                 }
                 catch (Exception error2)
                 {

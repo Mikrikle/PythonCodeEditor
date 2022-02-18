@@ -73,6 +73,16 @@ namespace PythonCodeEditor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Keyboard {
+            get {
+                object obj = ResourceManager.GetObject("Keyboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Python {
             get {
                 object obj = ResourceManager.GetObject("Python", resourceCulture);
