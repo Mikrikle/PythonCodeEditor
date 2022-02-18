@@ -5,6 +5,24 @@ namespace PythonCodeEditor
 {
     public partial class mainWindow : Form
     {
+        public struct ShortcutData
+        {
+            public string Text { get; set; } = "";
+            public int StepBack { get; set; } = 0;
+            public ShortcutData() { }
+            public ShortcutData(string text, int stepBack)
+            {
+                Text = text;
+                StepBack = stepBack;
+            }
+            public override string ToString() => $"Text: {Text} StepBack: {StepBack}";
+        }
+
+        public Dictionary<string, ShortcutData> shortcuts = new()
+        {
+            { "p", new ShortcutData("print(f\"{}\")", 3) }
+        };
+
 
         public static class ErrorMessage
         {
@@ -87,19 +105,26 @@ namespace PythonCodeEditor
                 }
                 else
                 {
+                    
                     char prevChar = codeEditor.Text[codeEditor.SelectionStart - 1];
-                    switch (prevChar)
+                    if (prevChar != '\n')
                     {
-                        case 'p':
-                            codeEditor.Paste("rint(f\"{}\")");
-                            codeEditor.SelectionStart -= 3;
-                            break;
-                        default:
-                            codeEditor.Paste("    ");
-                            break;
+                        string[] textrows = codeEditor.Text[0..codeEditor.SelectionStart].Split('\n');
+                        string shortcut = textrows.Last();
+                        if (shortcuts.TryGetValue(shortcut, out ShortcutData insertion))
+                        {
+                            int pos = codeEditor.SelectionStart;
+                            codeEditor.Text = codeEditor.Text.Remove(pos - shortcut.Length, shortcut.Length);
+                            codeEditor.SelectionStart = pos - shortcut.Length;
+                            codeEditor.Paste(insertion.Text);
+                            codeEditor.SelectionStart -= insertion.StepBack;
+                        }
+                    }
+                    else
+                    {
+                        codeEditor.Paste("    ");
                     }
                 }
-
                 e.IsInputKey = true;
             }
         }
