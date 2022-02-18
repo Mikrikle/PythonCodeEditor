@@ -28,74 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.button_settings = new System.Windows.Forms.Button();
+            this.button_console = new System.Windows.Forms.Button();
+            this.button_python = new System.Windows.Forms.Button();
+            this.button_run = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTextBox1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1000, 31);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 27);
-            this.toolStripTextBox1.Text = "test";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 469);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1000, 26);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.button_settings);
+            this.panel1.Controls.Add(this.button_console);
+            this.panel1.Controls.Add(this.button_python);
+            this.panel1.Controls.Add(this.button_run);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(145, 438);
+            this.panel1.Size = new System.Drawing.Size(64, 495);
             this.panel1.TabIndex = 2;
             // 
-            // splitter1
+            // button_settings
             // 
-            this.splitter1.Location = new System.Drawing.Point(145, 31);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(8, 438);
-            this.splitter1.TabIndex = 3;
-            this.splitter1.TabStop = false;
+            this.button_settings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button_settings.FlatAppearance.BorderSize = 0;
+            this.button_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_settings.Image = global::PythonCodeEditor.Properties.Resources.Settings;
+            this.button_settings.Location = new System.Drawing.Point(0, 431);
+            this.button_settings.Name = "button_settings";
+            this.button_settings.Size = new System.Drawing.Size(64, 64);
+            this.button_settings.TabIndex = 3;
+            this.button_settings.UseVisualStyleBackColor = true;
+            // 
+            // button_console
+            // 
+            this.button_console.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_console.FlatAppearance.BorderSize = 0;
+            this.button_console.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_console.Image = global::PythonCodeEditor.Properties.Resources.Console;
+            this.button_console.Location = new System.Drawing.Point(0, 128);
+            this.button_console.Name = "button_console";
+            this.button_console.Size = new System.Drawing.Size(64, 64);
+            this.button_console.TabIndex = 2;
+            this.button_console.UseVisualStyleBackColor = true;
+            // 
+            // button_python
+            // 
+            this.button_python.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_python.FlatAppearance.BorderSize = 0;
+            this.button_python.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_python.Image = global::PythonCodeEditor.Properties.Resources.Python;
+            this.button_python.Location = new System.Drawing.Point(0, 64);
+            this.button_python.Name = "button_python";
+            this.button_python.Size = new System.Drawing.Size(64, 64);
+            this.button_python.TabIndex = 1;
+            this.button_python.UseVisualStyleBackColor = true;
+            // 
+            // button_run
+            // 
+            this.button_run.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_run.FlatAppearance.BorderSize = 0;
+            this.button_run.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_run.Image = global::PythonCodeEditor.Properties.Resources.Run;
+            this.button_run.Location = new System.Drawing.Point(0, 0);
+            this.button_run.Name = "button_run";
+            this.button_run.Size = new System.Drawing.Size(64, 64);
+            this.button_run.TabIndex = 0;
+            this.button_run.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(153, 31);
+            this.textBox1.ForeColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Location = new System.Drawing.Point(64, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(847, 438);
+            this.textBox1.Size = new System.Drawing.Size(936, 495);
             this.textBox1.TabIndex = 4;
             // 
             // mainWindow
@@ -104,32 +116,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 495);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "mainWindow";
             this.Text = "PySharp";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private MenuStrip menuStrip1;
-        private ToolStripTextBox toolStripTextBox1;
-        private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
         private Panel panel1;
-        private Splitter splitter1;
         private TextBox textBox1;
+        private Button button_run;
+        private Button button_settings;
+        private Button button_console;
+        private Button button_python;
     }
 }
