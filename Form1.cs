@@ -43,7 +43,25 @@ namespace PythonCodeEditor
         {
             if (e.KeyCode == Keys.Tab)
             {
-                SendKeys.Send("    ");
+                if(codeEditor.Text.Length == 0 || codeEditor.SelectionStart == 0)
+                {
+                    codeEditor.Paste("    ");
+                }
+                else
+                {
+                    char prevChar = codeEditor.Text[codeEditor.SelectionStart - 1];
+                    switch (prevChar)
+                    {
+                        case 'p':
+                            codeEditor.Paste("rint(f\"{}\")");
+                            codeEditor.SelectionStart -= 3;
+                            break;
+                        default:
+                            codeEditor.Paste("    ");
+                            break;
+                    }
+                }
+
                 e.IsInputKey = true;
             }
         }

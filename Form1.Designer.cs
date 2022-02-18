@@ -57,6 +57,7 @@
             this.button_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_settings.Image = global::PythonCodeEditor.Properties.Resources.Settings;
             this.button_settings.Location = new System.Drawing.Point(0, 431);
+            this.button_settings.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.button_settings.Name = "button_settings";
             this.button_settings.Size = new System.Drawing.Size(64, 64);
             this.button_settings.TabIndex = 3;
@@ -69,6 +70,7 @@
             this.button_console.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_console.Image = global::PythonCodeEditor.Properties.Resources.Console;
             this.button_console.Location = new System.Drawing.Point(0, 128);
+            this.button_console.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.button_console.Name = "button_console";
             this.button_console.Size = new System.Drawing.Size(64, 64);
             this.button_console.TabIndex = 2;
@@ -82,6 +84,7 @@
             this.button_python.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_python.Image = global::PythonCodeEditor.Properties.Resources.Python;
             this.button_python.Location = new System.Drawing.Point(0, 64);
+            this.button_python.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.button_python.Name = "button_python";
             this.button_python.Size = new System.Drawing.Size(64, 64);
             this.button_python.TabIndex = 1;
@@ -95,6 +98,7 @@
             this.button_run.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_run.Image = global::PythonCodeEditor.Properties.Resources.Run;
             this.button_run.Location = new System.Drawing.Point(0, 0);
+            this.button_run.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.button_run.Name = "button_run";
             this.button_run.Size = new System.Drawing.Size(64, 64);
             this.button_run.TabIndex = 0;
