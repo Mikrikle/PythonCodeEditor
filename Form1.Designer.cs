@@ -43,13 +43,35 @@
             this.tab_shortcuts = new System.Windows.Forms.TabPage();
             this.label_shortcuts = new System.Windows.Forms.Label();
             this.tab_settings = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label_example = new System.Windows.Forms.Label();
+            this.table_settings = new System.Windows.Forms.TableLayoutPanel();
+            this.label_fontColor = new System.Windows.Forms.Label();
+            this.button_fontColor = new System.Windows.Forms.Button();
+            this.button_bgColor = new System.Windows.Forms.Button();
+            this.button_font = new System.Windows.Forms.Button();
+            this.label_bgColor = new System.Windows.Forms.Label();
+            this.label_font = new System.Windows.Forms.Label();
             this.label_settings = new System.Windows.Forms.Label();
             this.imageList_tabs = new System.Windows.Forms.ImageList(this.components);
+            this.colorDialog_font = new System.Windows.Forms.ColorDialog();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.colorDialog_bg = new System.Windows.Forms.ColorDialog();
+            this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button_reset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_editor.SuspendLayout();
             this.tab_shortcuts.SuspendLayout();
             this.tab_settings.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.table_settings.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -226,6 +248,8 @@
             // tab_settings
             // 
             this.tab_settings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.tab_settings.Controls.Add(this.tableLayoutPanel2);
+            this.tab_settings.Controls.Add(this.table_settings);
             this.tab_settings.Controls.Add(this.label_settings);
             this.tab_settings.ImageIndex = 0;
             this.tab_settings.Location = new System.Drawing.Point(4, 4);
@@ -234,6 +258,127 @@
             this.tab_settings.Size = new System.Drawing.Size(928, 469);
             this.tab_settings.TabIndex = 2;
             this.tab_settings.Text = "Settings";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.label_example, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(463, 26);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 213F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(462, 440);
+            this.tableLayoutPanel2.TabIndex = 3;
+            // 
+            // label_example
+            // 
+            this.label_example.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label_example.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_example.ForeColor = System.Drawing.SystemColors.Control;
+            this.label_example.Location = new System.Drawing.Point(3, 0);
+            this.label_example.Name = "label_example";
+            this.label_example.Size = new System.Drawing.Size(456, 227);
+            this.label_example.TabIndex = 0;
+            this.label_example.Text = "print(\"hello world\")\r\n\r\nfor i in range(10):\r\n    print(i)\r\n    ";
+            // 
+            // table_settings
+            // 
+            this.table_settings.ColumnCount = 2;
+            this.table_settings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.table_settings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.table_settings.Controls.Add(this.label_fontColor, 0, 0);
+            this.table_settings.Controls.Add(this.button_fontColor, 1, 0);
+            this.table_settings.Controls.Add(this.button_bgColor, 1, 1);
+            this.table_settings.Controls.Add(this.button_font, 1, 2);
+            this.table_settings.Controls.Add(this.label_bgColor, 0, 1);
+            this.table_settings.Controls.Add(this.label_font, 0, 2);
+            this.table_settings.Dock = System.Windows.Forms.DockStyle.Left;
+            this.table_settings.Location = new System.Drawing.Point(3, 26);
+            this.table_settings.Name = "table_settings";
+            this.table_settings.RowCount = 4;
+            this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.table_settings.Size = new System.Drawing.Size(460, 440);
+            this.table_settings.TabIndex = 2;
+            // 
+            // label_fontColor
+            // 
+            this.label_fontColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_fontColor.ForeColor = System.Drawing.SystemColors.Control;
+            this.label_fontColor.Location = new System.Drawing.Point(3, 0);
+            this.label_fontColor.Name = "label_fontColor";
+            this.label_fontColor.Size = new System.Drawing.Size(225, 64);
+            this.label_fontColor.TabIndex = 0;
+            this.label_fontColor.Text = "Font color";
+            this.label_fontColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_fontColor
+            // 
+            this.button_fontColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_fontColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_fontColor.ForeColor = System.Drawing.SystemColors.Control;
+            this.button_fontColor.Location = new System.Drawing.Point(234, 3);
+            this.button_fontColor.Name = "button_fontColor";
+            this.button_fontColor.Size = new System.Drawing.Size(223, 58);
+            this.button_fontColor.TabIndex = 1;
+            this.button_fontColor.Text = "select";
+            this.button_fontColor.UseVisualStyleBackColor = true;
+            this.button_fontColor.Click += new System.EventHandler(this.Button_fontColor_Click);
+            // 
+            // button_bgColor
+            // 
+            this.button_bgColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_bgColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_bgColor.ForeColor = System.Drawing.SystemColors.Control;
+            this.button_bgColor.Location = new System.Drawing.Point(234, 67);
+            this.button_bgColor.Name = "button_bgColor";
+            this.button_bgColor.Size = new System.Drawing.Size(223, 58);
+            this.button_bgColor.TabIndex = 2;
+            this.button_bgColor.Text = "select";
+            this.button_bgColor.UseVisualStyleBackColor = true;
+            this.button_bgColor.Click += new System.EventHandler(this.button_bgColor_Click);
+            // 
+            // button_font
+            // 
+            this.button_font.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_font.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_font.ForeColor = System.Drawing.SystemColors.Control;
+            this.button_font.Location = new System.Drawing.Point(234, 131);
+            this.button_font.Name = "button_font";
+            this.button_font.Size = new System.Drawing.Size(223, 58);
+            this.button_font.TabIndex = 3;
+            this.button_font.Text = "select";
+            this.button_font.UseVisualStyleBackColor = true;
+            this.button_font.Click += new System.EventHandler(this.button_font_Click);
+            // 
+            // label_bgColor
+            // 
+            this.label_bgColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_bgColor.ForeColor = System.Drawing.SystemColors.Control;
+            this.label_bgColor.Location = new System.Drawing.Point(3, 64);
+            this.label_bgColor.Name = "label_bgColor";
+            this.label_bgColor.Size = new System.Drawing.Size(225, 64);
+            this.label_bgColor.TabIndex = 4;
+            this.label_bgColor.Text = "Background color";
+            this.label_bgColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_font
+            // 
+            this.label_font.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_font.ForeColor = System.Drawing.SystemColors.Control;
+            this.label_font.Location = new System.Drawing.Point(3, 128);
+            this.label_font.Name = "label_font";
+            this.label_font.Size = new System.Drawing.Size(225, 64);
+            this.label_font.TabIndex = 5;
+            this.label_font.Text = "Font";
+            this.label_font.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_settings
             // 
@@ -254,6 +399,85 @@
             this.imageList_tabs.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList_tabs.Images.SetKeyName(0, "tab.png");
             // 
+            // colorDialog_font
+            // 
+            this.colorDialog_font.Color = System.Drawing.SystemColors.Control;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(225, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Font color";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(234, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(223, 41);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "select";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // colorDialog1
+            // 
+            this.colorDialog1.Color = System.Drawing.SystemColors.Control;
+            // 
+            // colorDialog_bg
+            // 
+            this.colorDialog_bg.Color = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            // 
+            // fontDialog
+            // 
+            this.fontDialog.Color = System.Drawing.SystemColors.Control;
+            this.fontDialog.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button_reset);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 230);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(456, 207);
+            this.panel2.TabIndex = 1;
+            // 
+            // button_reset
+            // 
+            this.button_reset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_reset.ForeColor = System.Drawing.SystemColors.Control;
+            this.button_reset.Location = new System.Drawing.Point(0, 0);
+            this.button_reset.Name = "button_reset";
+            this.button_reset.Size = new System.Drawing.Size(456, 58);
+            this.button_reset.TabIndex = 2;
+            this.button_reset.Text = "default";
+            this.button_reset.UseVisualStyleBackColor = true;
+            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -266,12 +490,17 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "mainWindow";
             this.Text = "PySharp";
+            this.Load += new System.EventHandler(this.mainWindow_Load);
             this.panel1.ResumeLayout(false);
             this.tab_main.ResumeLayout(false);
             this.tab_editor.ResumeLayout(false);
             this.tab_editor.PerformLayout();
             this.tab_shortcuts.ResumeLayout(false);
             this.tab_settings.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.table_settings.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -292,5 +521,23 @@
         private Label label_shortcuts;
         private Label label_settings;
         private ImageList imageList_tabs;
+        private TableLayoutPanel table_settings;
+        private Label label_fontColor;
+        private Button button_fontColor;
+        private ColorDialog colorDialog_font;
+        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label label1;
+        private Button button1;
+        private Label label_example;
+        private Button button_bgColor;
+        private Button button_font;
+        private Label label_bgColor;
+        private Label label_font;
+        private ColorDialog colorDialog1;
+        private ColorDialog colorDialog_bg;
+        private FontDialog fontDialog;
+        private Panel panel2;
+        private Button button_reset;
     }
 }
