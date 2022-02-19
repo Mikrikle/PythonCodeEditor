@@ -23,6 +23,28 @@ namespace PythonCodeEditor
             { "p", new ShortcutData("print(f\"{}\")", 3) }
         };
 
+        private void run()
+        {
+            string path = @"temp.py";
+            try
+            {
+                File.WriteAllText(path, codeEditor.Text);
+
+                try
+                {
+                    Process.Start("python.exe", "-i " + Directory.GetCurrentDirectory() + @"\" + path);
+                }
+                catch (Exception error2)
+                {
+                    ErrorMessage.Show($"python.exe not found\n\n{error2.Message}");
+                }
+
+            }
+            catch (Exception error)
+            {
+                ErrorMessage.Show($"Unable to create a file\n\n{error.Message}");
+            }
+        }
 
         public static class ErrorMessage
         {
@@ -50,25 +72,7 @@ namespace PythonCodeEditor
 
         private void Button_run_Click(object sender, EventArgs e)
         {
-            string path = @"temp.py";
-            try
-            {
-                File.WriteAllText(path, codeEditor.Text);
-
-                try
-                {
-                    Process.Start("python.exe", "-i " + Directory.GetCurrentDirectory() + @"\" + path);
-                }
-                catch (Exception error2)
-                {
-                    ErrorMessage.Show($"python.exe not found\n\n{error2.Message}");
-                }
-
-            }
-            catch (Exception error)
-            {
-                ErrorMessage.Show($"Unable to create a file\n\n{error.Message}");
-            }
+            run();
         }
 
         private void Button_python_Click(object sender, EventArgs e)
@@ -131,7 +135,12 @@ namespace PythonCodeEditor
 
         private void CodeEditor_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Tab)
+            if (e.KeyCode == Keys.R && e.Modifiers == Keys.Control)
+            {
+                run();
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Tab)
             {
                 e.SuppressKeyPress = true;
             }
@@ -158,6 +167,21 @@ namespace PythonCodeEditor
                     codeEditor.SelectionStart -= 1;
                     break;
             }
+        }
+
+        private void button_shortcuts_Click(object sender, EventArgs e)
+        {
+            tab_main.SelectedIndex = 1;
+        }
+
+        private void button_editor_Click(object sender, EventArgs e)
+        {
+            tab_main.SelectedIndex = 0;
+        }
+
+        private void button_settings_Click(object sender, EventArgs e)
+        {
+            tab_main.SelectedIndex = 2;
         }
     }
 }
