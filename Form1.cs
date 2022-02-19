@@ -123,6 +123,10 @@ namespace PythonCodeEditor
                             codeEditor.Paste(insertion.Text);
                             codeEditor.SelectionStart -= insertion.StepBack;
                         }
+                        else
+                        {
+                            codeEditor.Paste("    ");
+                        }
                     }
                     else
                     {
