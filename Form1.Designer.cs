@@ -39,12 +39,14 @@
             this.button_run = new System.Windows.Forms.Button();
             this.tab_main = new System.Windows.Forms.TabControl();
             this.tab_editor = new System.Windows.Forms.TabPage();
-            this.codeEditor = new System.Windows.Forms.TextBox();
+            this.codeEditor = new System.Windows.Forms.RichTextBox();
             this.tab_shortcuts = new System.Windows.Forms.TabPage();
             this.label_shortcuts = new System.Windows.Forms.Label();
             this.tab_settings = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label_example = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button_reset = new System.Windows.Forms.Button();
             this.table_settings = new System.Windows.Forms.TableLayoutPanel();
             this.label_fontColor = new System.Windows.Forms.Label();
             this.button_fontColor = new System.Windows.Forms.Button();
@@ -61,17 +63,15 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.colorDialog_bg = new System.Windows.Forms.ColorDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button_reset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_editor.SuspendLayout();
             this.tab_shortcuts.SuspendLayout();
             this.tab_settings.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.table_settings.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -143,7 +143,7 @@
             this.button_console.Size = new System.Drawing.Size(64, 64);
             this.button_console.TabIndex = 2;
             this.button_console.UseVisualStyleBackColor = true;
-            this.button_console.Click += new System.EventHandler(this.Button_console_Click);
+            this.button_console.Click += new System.EventHandler(this.button_console_Click);
             // 
             // button_python
             // 
@@ -157,7 +157,7 @@
             this.button_python.Size = new System.Drawing.Size(64, 64);
             this.button_python.TabIndex = 1;
             this.button_python.UseVisualStyleBackColor = true;
-            this.button_python.Click += new System.EventHandler(this.Button_python_Click);
+            this.button_python.Click += new System.EventHandler(this.button_python_Click);
             // 
             // button_run
             // 
@@ -171,7 +171,7 @@
             this.button_run.Size = new System.Drawing.Size(64, 64);
             this.button_run.TabIndex = 0;
             this.button_run.UseVisualStyleBackColor = true;
-            this.button_run.Click += new System.EventHandler(this.Button_run_Click);
+            this.button_run.Click += new System.EventHandler(this.button_run_Click);
             // 
             // tab_main
             // 
@@ -207,19 +207,19 @@
             // 
             // codeEditor
             // 
-            this.codeEditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.codeEditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.codeEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.codeEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.codeEditor.ForeColor = System.Drawing.SystemColors.Control;
+            this.codeEditor.ForeColor = System.Drawing.Color.White;
             this.codeEditor.Location = new System.Drawing.Point(0, 0);
-            this.codeEditor.Margin = new System.Windows.Forms.Padding(0);
-            this.codeEditor.Multiline = true;
             this.codeEditor.Name = "codeEditor";
             this.codeEditor.Size = new System.Drawing.Size(928, 469);
-            this.codeEditor.TabIndex = 4;
-            this.codeEditor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CodeEditor_KeyDown);
-            this.codeEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CodeEditor_KeyPress);
-            this.codeEditor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.CodeEditor_PreviewKeyDown);
+            this.codeEditor.TabIndex = 0;
+            this.codeEditor.Text = "";
+            this.codeEditor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.codeEditor_KeyDown);
+            this.codeEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codeEditor_KeyPress);
+            this.codeEditor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.codeEditor_KeyUp);
+            this.codeEditor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.codeEditor_PreviewKeyDown);
             // 
             // tab_shortcuts
             // 
@@ -286,6 +286,28 @@
             this.label_example.TabIndex = 0;
             this.label_example.Text = "print(\"hello world\")\r\n\r\nfor i in range(10):\r\n    print(i)\r\n    ";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button_reset);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 230);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(456, 207);
+            this.panel2.TabIndex = 1;
+            // 
+            // button_reset
+            // 
+            this.button_reset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_reset.ForeColor = System.Drawing.SystemColors.Control;
+            this.button_reset.Location = new System.Drawing.Point(0, 0);
+            this.button_reset.Name = "button_reset";
+            this.button_reset.Size = new System.Drawing.Size(456, 58);
+            this.button_reset.TabIndex = 2;
+            this.button_reset.Text = "default";
+            this.button_reset.UseVisualStyleBackColor = true;
+            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
+            // 
             // table_settings
             // 
             this.table_settings.ColumnCount = 2;
@@ -330,7 +352,7 @@
             this.button_fontColor.TabIndex = 1;
             this.button_fontColor.Text = "select";
             this.button_fontColor.UseVisualStyleBackColor = true;
-            this.button_fontColor.Click += new System.EventHandler(this.Button_fontColor_Click);
+            this.button_fontColor.Click += new System.EventHandler(this.button_fontColor_Click);
             // 
             // button_bgColor
             // 
@@ -456,28 +478,6 @@
             this.fontDialog.Color = System.Drawing.SystemColors.Control;
             this.fontDialog.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button_reset);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 230);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(456, 207);
-            this.panel2.TabIndex = 1;
-            // 
-            // button_reset
-            // 
-            this.button_reset.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button_reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_reset.ForeColor = System.Drawing.SystemColors.Control;
-            this.button_reset.Location = new System.Drawing.Point(0, 0);
-            this.button_reset.Name = "button_reset";
-            this.button_reset.Size = new System.Drawing.Size(456, 58);
-            this.button_reset.TabIndex = 2;
-            this.button_reset.Text = "default";
-            this.button_reset.UseVisualStyleBackColor = true;
-            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
-            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -490,17 +490,17 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "mainWindow";
             this.Text = "PySharp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainWindow_FormClosing);
             this.Load += new System.EventHandler(this.mainWindow_Load);
             this.panel1.ResumeLayout(false);
             this.tab_main.ResumeLayout(false);
             this.tab_editor.ResumeLayout(false);
-            this.tab_editor.PerformLayout();
             this.tab_shortcuts.ResumeLayout(false);
             this.tab_settings.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.table_settings.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -515,7 +515,6 @@
         private TabControl tab_main;
         private TabPage tab_editor;
         private TabPage tab_shortcuts;
-        private TextBox codeEditor;
         private Button button_editor;
         private TabPage tab_settings;
         private Label label_shortcuts;
@@ -539,5 +538,6 @@
         private FontDialog fontDialog;
         private Panel panel2;
         private Button button_reset;
+        private RichTextBox codeEditor;
     }
 }

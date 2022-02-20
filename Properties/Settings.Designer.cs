@@ -37,6 +37,7 @@ namespace PythonCodeEditor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("33, 33, 33")]
         public global::System.Drawing.Color BackgroundColor {
             get {
                 return ((global::System.Drawing.Color)(this["BackgroundColor"]));

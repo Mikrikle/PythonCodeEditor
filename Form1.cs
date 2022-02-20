@@ -1,5 +1,6 @@
 using System.IO;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace PythonCodeEditor
 {
@@ -18,7 +19,7 @@ namespace PythonCodeEditor
             public override string ToString() => $"Text: {Text} StepBack: {StepBack}";
         }
 
-        private Dictionary<string, ShortcutData> shortcuts = new()
+        private Dictionary<string, ShortcutData> shortcuts_dict = new()
         {
             { "p", new ShortcutData("print(f\"{}\")", 3) }
         };
@@ -30,6 +31,8 @@ namespace PythonCodeEditor
                 MessageBox.Show(text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private readonly string path = @"__temp.py";
 
         private static void TryRun(string processName, string args="", string errorMessage="")
         {
@@ -45,7 +48,6 @@ namespace PythonCodeEditor
 
         private void RunPython()
         {
-            string path = @"temp.py";
             try
             {
                 File.WriteAllText(path, codeEditor.Text);
@@ -61,7 +63,6 @@ namespace PythonCodeEditor
                 ErrorMessage.Show($"Unable to create a file\n\n{error.Message}");
             }
         }
-
 
         private void ApplySettings()
         {
@@ -82,58 +83,101 @@ namespace PythonCodeEditor
             Properties.Settings.Default.Save();
         }
 
+        private void OffSound(KeyEventArgs e)
+        {
+            if (
+                codeEditor.GetLineFromCharIndex(codeEditor.SelectionStart) == 0 &&
+                e.KeyData == Keys.Up ||
+                codeEditor.GetLineFromCharIndex(codeEditor.SelectionStart) == codeEditor.GetLineFromCharIndex(codeEditor.TextLength) &&
+                e.KeyData == Keys.Down ||
+                codeEditor.SelectionStart == codeEditor.TextLength &&
+                e.KeyData == Keys.Right ||
+                codeEditor.SelectionStart == 0 &&
+                e.KeyData == Keys.Left
+            ) { e.Handled = true; };
+        }
+
+        private void HighlightText(object sender, EventArgs e)
+        {
+            HighlightText();
+        }
+
+        private void HighlightText()
+        {
+            int pos = codeEditor.SelectionStart;
+            string[] words = { "for", "in", "and", "while", "or", "def" };
+
+            codeEditor.SelectAll();
+            codeEditor.SelectionColor = Color.White;
+
+            foreach (string word in words)
+            {
+                string pattern = @"(?<!\S)" + word + @"(?!\S)+";
+                foreach (Match match in Regex.Matches(codeEditor.Text, pattern, RegexOptions.IgnoreCase))
+                {
+                    codeEditor.SelectionStart = match.Index;
+                    codeEditor.SelectionLength = word.Length;
+                    codeEditor.SelectionColor = Color.FromArgb(86, 156, 214);
+                }
+            }
+            codeEditor.DeselectAll();
+            codeEditor.SelectionStart = pos;
+            codeEditor.ScrollToCaret();
+        }
+
         public mainWindow()
         {
+            System.Windows.Forms.Timer highlightTimer = new System.Windows.Forms.Timer();
+            highlightTimer.Interval = 10000;
+            highlightTimer.Tick += new EventHandler(HighlightText);
+            highlightTimer.Start();
             InitializeComponent();
         }
 
-        private void Button_run_Click(object sender, EventArgs e)
+        private void button_run_Click(object sender, EventArgs e)
         {
             RunPython();
         }
 
-        private void Button_python_Click(object sender, EventArgs e)
+        private void button_python_Click(object sender, EventArgs e)
         {
             TryRun("python.exe", errorMessage: "python.exe not found");
         }
 
-        private void Button_console_Click(object sender, EventArgs e)
+        private void button_console_Click(object sender, EventArgs e)
         {
             TryRun("cmd.exe", errorMessage: "cmd.exe not found");
         }
 
-        private void CodeEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void codeEditor_KeyUp(object sender, KeyEventArgs e)
+        {
+            //HighlightText();
+        }
+
+        private void codeEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode != Keys.Tab)
                 return;
 
+            int nLine = codeEditor.GetLineFromCharIndex(codeEditor.SelectionStart);
+            string shortcut = nLine == 0? codeEditor.Text.Trim(): codeEditor.Lines[nLine].Trim();
 
-            if(codeEditor.Text.Length > 0 && codeEditor.SelectionStart > 0
-                && codeEditor.Text[codeEditor.SelectionStart - 1] != '\n')
+            if (shortcuts_dict.TryGetValue(shortcut, out ShortcutData insertion))
             {
-                string[] textrows = codeEditor.Text[0..codeEditor.SelectionStart].Split('\n');
-                string shortcut = textrows.Last();
-                if (shortcuts.TryGetValue(shortcut, out ShortcutData insertion))
-                {
-                    int pos = codeEditor.SelectionStart;
-                    codeEditor.Text = codeEditor.Text.Remove(pos - shortcut.Length, shortcut.Length);
-                    codeEditor.SelectionStart = pos - shortcut.Length;
-                    codeEditor.Paste(insertion.Text);
-                    codeEditor.SelectionStart -= insertion.StepBack;
-                }
-                else
-                {
-                    codeEditor.Paste("    ");
-                }
+                int pos = codeEditor.SelectionStart;
+                codeEditor.Text = codeEditor.Text.Remove(pos - shortcut.Length, shortcut.Length);
+                codeEditor.SelectionStart = pos - shortcut.Length;
+                codeEditor.SelectedText = insertion.Text;
+                codeEditor.SelectionStart -= insertion.StepBack;
             }
             else
             {
-                codeEditor.Paste("    ");
+                codeEditor.SelectedText = "    ";
             }
             e.IsInputKey = true;
         }
 
-        private void CodeEditor_KeyDown(object sender, KeyEventArgs e)
+        private void codeEditor_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.R && e.Modifiers == Keys.Control)
             {
@@ -144,26 +188,23 @@ namespace PythonCodeEditor
             {
                 e.SuppressKeyPress = true;
             }
+            OffSound(e);
         }
 
-        private void CodeEditor_KeyPress(object sender, KeyPressEventArgs e)
+        private void codeEditor_KeyPress(object sender, KeyPressEventArgs e)
         {
             switch (e.KeyChar)
             {
                 case '(':
-                    codeEditor.Paste(")");
+                    codeEditor.SelectedText = ")";
                     codeEditor.SelectionStart -= 1;
                     break;
                 case '"':
-                    codeEditor.Paste("\"");
+                    codeEditor.SelectedText = "\"";
                     codeEditor.SelectionStart -= 1;
                     break;
                 case '\'':
-                    codeEditor.Paste("\'");
-                    codeEditor.SelectionStart -= 1;
-                    break;
-                case '<':
-                    codeEditor.Paste(">");
+                    codeEditor.SelectedText = "\'";
                     codeEditor.SelectionStart -= 1;
                     break;
             }
@@ -189,7 +230,7 @@ namespace PythonCodeEditor
             ApplySettings();
         }
 
-        private void Button_fontColor_Click(object sender, EventArgs e)
+        private void button_fontColor_Click(object sender, EventArgs e)
         {
             if (colorDialog_font.ShowDialog() == DialogResult.OK)
             {
@@ -226,6 +267,14 @@ namespace PythonCodeEditor
             label_example.ForeColor = Color.FromArgb(255, 255, 255);
             SaveSettings();
             ApplySettings();
+        }
+
+        private void mainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(File.Exists(path))
+            {
+                //File.Delete(path);
+            }
         }
     }
 }
