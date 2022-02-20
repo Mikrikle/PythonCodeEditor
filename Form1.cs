@@ -6,6 +6,23 @@ namespace PythonCodeEditor
 {
     public partial class mainWindow : Form
     {
+        private static readonly string[] pyKeyWords = {
+            "False", "class", "from",
+            "or", "None", "continue",
+            "global", "pass", "True",
+            "def", "if", "raise",
+            "and", "del", "import",
+            "return", "as", "elif",
+            "in", "try", "assert",
+            "else", "is", "while",
+            "async", "except", "lambda",
+            "with", "await", "finally",
+            "nonlocal", "yield", "break",
+            "for", "not"
+        };
+                                               
+    
+
         private struct ShortcutData
         {
             public string Text { get; set; } = "";
@@ -107,12 +124,11 @@ namespace PythonCodeEditor
         private void HighlightText()
         {
             int pos = codeEditor.SelectionStart;
-            string[] words = { "for", "in", "and", "while", "or", "def" };
 
             codeEditor.SelectAll();
             codeEditor.SelectionColor = Color.White;
 
-            foreach (string word in words)
+            foreach (string word in pyKeyWords)
             {
                 string pattern = @"(?<!\S)" + word + @"(?!\S)+";
                 foreach (Match match in Regex.Matches(codeEditor.Text, pattern, RegexOptions.IgnoreCase))
@@ -128,12 +144,27 @@ namespace PythonCodeEditor
             highlightTimer.Stop();
         }
 
+        private int calcTabIndex()
+        {
+            int nLine = codeEditor.GetLineFromCharIndex(codeEditor.SelectionStart);
+            string line = nLine == 0 ? codeEditor.Text : codeEditor.Lines[nLine];
+            int nSpaces = 0;
+            foreach (char symbol in line)
+            {
+                if (symbol != ' ')
+                    break;
+                nSpaces++;
+            }
+            return nSpaces / 4;
+        }
+
         public mainWindow()
         {
             highlightTimer.Interval = 3000;
             highlightTimer.Tick += new EventHandler(HighlightText);
             highlightTimer.Start();
             InitializeComponent();
+            
         }
 
         private void button_run_Click(object sender, EventArgs e)
@@ -191,6 +222,22 @@ namespace PythonCodeEditor
             else if (e.KeyCode == Keys.Tab)
             {
                 e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                if(codeEditor.Text.Length > 0)
+                {
+                    int ifAddTab = codeEditor.Text[codeEditor.SelectionStart - 1] == ':'?1:0;
+                    string sTabs = "";
+
+                    for (int i = 0; i < calcTabIndex() + ifAddTab; i++)
+                    {
+                        sTabs += "    ";
+                    }
+                    codeEditor.SelectedText = "\n" + sTabs;
+                    codeEditor.SelectionStart++;
+                    e.SuppressKeyPress = true;
+                }
             }
             OffSound(e);
         }
