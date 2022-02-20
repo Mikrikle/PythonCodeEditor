@@ -97,6 +97,8 @@ namespace PythonCodeEditor
             ) { e.Handled = true; };
         }
 
+        private System.Windows.Forms.Timer highlightTimer = new System.Windows.Forms.Timer();
+
         private void HighlightText(object sender, EventArgs e)
         {
             HighlightText();
@@ -123,12 +125,12 @@ namespace PythonCodeEditor
             codeEditor.DeselectAll();
             codeEditor.SelectionStart = pos;
             codeEditor.ScrollToCaret();
+            highlightTimer.Stop();
         }
 
         public mainWindow()
         {
-            System.Windows.Forms.Timer highlightTimer = new System.Windows.Forms.Timer();
-            highlightTimer.Interval = 10000;
+            highlightTimer.Interval = 3000;
             highlightTimer.Tick += new EventHandler(HighlightText);
             highlightTimer.Start();
             InitializeComponent();
@@ -151,11 +153,13 @@ namespace PythonCodeEditor
 
         private void codeEditor_KeyUp(object sender, KeyEventArgs e)
         {
+            highlightTimer.Start();
             //HighlightText();
         }
 
         private void codeEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
+            highlightTimer.Stop();
             if (e.KeyCode != Keys.Tab)
                 return;
 
