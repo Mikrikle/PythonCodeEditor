@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace PythonCodeEditor
 {
+
     public partial class mainWindow : Form
     {
         private static readonly string[] pyKeyWords = {
@@ -20,8 +21,8 @@ namespace PythonCodeEditor
             "nonlocal", "yield", "break",
             "for", "not"
         };
-                                               
-    
+
+        private readonly string path = @"__temp.py";
 
         private struct ShortcutData
         {
@@ -36,9 +37,11 @@ namespace PythonCodeEditor
             public override string ToString() => $"Text: {Text} StepBack: {StepBack}";
         }
 
-        private Dictionary<string, ShortcutData> shortcuts_dict = new()
+        private readonly Dictionary<string, ShortcutData> shortcuts_dict = new()
         {
-            { "p", new ShortcutData("print(f\"{}\")", 3) }
+            { "p", new ShortcutData("print(f\"{}\")", 3) },
+            { "for", new ShortcutData("for i in range():", 2) },
+            { "forfor", new ShortcutData("for i in range():\n    for j in range():", 2) },
         };
 
         private static class ErrorMessage
@@ -48,8 +51,6 @@ namespace PythonCodeEditor
                 MessageBox.Show(text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private readonly string path = @"__temp.py";
 
         private static void TryRun(string processName, string args="", string errorMessage="")
         {
@@ -235,7 +236,6 @@ namespace PythonCodeEditor
                         sTabs += "    ";
                     }
                     codeEditor.SelectedText = "\n" + sTabs;
-                    codeEditor.SelectionStart++;
                     e.SuppressKeyPress = true;
                 }
             }
@@ -256,6 +256,14 @@ namespace PythonCodeEditor
                     break;
                 case '\'':
                     codeEditor.SelectedText = "\'";
+                    codeEditor.SelectionStart -= 1;
+                    break;
+                case '[':
+                    codeEditor.SelectedText = "]";
+                    codeEditor.SelectionStart -= 1;
+                    break;
+                case '{':
+                    codeEditor.SelectedText = "}";
                     codeEditor.SelectionStart -= 1;
                     break;
             }
