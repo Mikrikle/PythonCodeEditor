@@ -58,5 +58,29 @@ namespace PythonCodeEditor.Properties {
                 this["Font"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("__temp.py")]
+        public string pyTempPath {
+            get {
+                return ((string)(this["pyTempPath"]));
+            }
+            set {
+                this["pyTempPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("86, 156, 214")]
+        public global::System.Drawing.Color pyColor {
+            get {
+                return ((global::System.Drawing.Color)(this["pyColor"]));
+            }
+            set {
+                this["pyColor"] = value;
+            }
+        }
     }
 }

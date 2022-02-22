@@ -11,5 +11,11 @@
     <Setting Name="Font" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Consolas, 10.8pt</Value>
     </Setting>
+    <Setting Name="pyTempPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">__temp.py</Value>
+    </Setting>
+    <Setting Name="pyColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">86, 156, 214</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

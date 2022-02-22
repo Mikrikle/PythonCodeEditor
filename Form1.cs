@@ -22,8 +22,6 @@ namespace PythonCodeEditor
             "for", "not"
         };
 
-        private readonly string path = @"__temp.py";
-
         private struct ShortcutData
         {
             public string Text { get; set; } = "";
@@ -68,11 +66,11 @@ namespace PythonCodeEditor
         {
             try
             {
-                File.WriteAllText(path, codeEditor.Text);
+                File.WriteAllText(Properties.Settings.Default.pyTempPath, codeEditor.Text);
 
                 TryRun(
                     "python.exe",
-                    "-i " + Directory.GetCurrentDirectory() + @"\" + path,
+                    "-i " + Directory.GetCurrentDirectory() + @"\" + Properties.Settings.Default.pyTempPath,
                     "python.exe not found"
                     );
             }
@@ -91,13 +89,17 @@ namespace PythonCodeEditor
             label_example.ForeColor = Properties.Settings.Default.FontColor;
             label_example.BackColor = Properties.Settings.Default.BackgroundColor;
             label_example.Font = Properties.Settings.Default.Font;
+
+            label_example.SelectionStart = label_example.Find("for");
+            label_example.SelectionLength = 3;
+            label_example.SelectionColor = Properties.Settings.Default.pyColor;
+            label_example.SelectionStart += 6;
+            label_example.SelectionLength = 2;
+            label_example.SelectionColor = Properties.Settings.Default.pyColor;
         }
 
         private void SaveSettings()
         {
-            Properties.Settings.Default.FontColor = label_example.ForeColor;
-            Properties.Settings.Default.BackgroundColor = label_example.BackColor;
-            Properties.Settings.Default.Font = label_example.Font;
             Properties.Settings.Default.Save();
         }
 
@@ -127,7 +129,7 @@ namespace PythonCodeEditor
             int pos = codeEditor.SelectionStart;
 
             codeEditor.SelectAll();
-            codeEditor.SelectionColor = Color.White;
+            codeEditor.SelectionColor = Properties.Settings.Default.FontColor;
 
             foreach (string word in pyKeyWords)
             {
@@ -136,7 +138,7 @@ namespace PythonCodeEditor
                 {
                     codeEditor.SelectionStart = match.Index;
                     codeEditor.SelectionLength = word.Length;
-                    codeEditor.SelectionColor = Color.FromArgb(86, 156, 214);
+                    codeEditor.SelectionColor = Properties.Settings.Default.pyColor;
                 }
             }
             codeEditor.DeselectAll();
@@ -291,21 +293,22 @@ namespace PythonCodeEditor
 
         private void button_fontColor_Click(object sender, EventArgs e)
         {
-            if (colorDialog_font.ShowDialog() == DialogResult.OK)
+            if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                label_example.ForeColor = colorDialog_font.Color;
-                codeEditor.ForeColor = colorDialog_font.Color;
+                Properties.Settings.Default.FontColor = colorDialog.Color;
                 SaveSettings();
+                ApplySettings();
             }
+
         }
 
         private void button_bgColor_Click(object sender, EventArgs e)
         {
             if (colorDialog_bg.ShowDialog() == DialogResult.OK)
             {
-                label_example.BackColor = colorDialog_bg.Color;
-                codeEditor.BackColor = colorDialog_bg.Color;
+                Properties.Settings.Default.BackgroundColor = colorDialog_bg.Color;
                 SaveSettings();
+                ApplySettings();
             }
         }
 
@@ -313,26 +316,39 @@ namespace PythonCodeEditor
         {
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
-                label_example.Font = fontDialog.Font;
-                codeEditor.Font = fontDialog.Font;
+                Properties.Settings.Default.Font = fontDialog.Font;
                 SaveSettings();
+                ApplySettings();
             }
+            
         }
 
         private void button_reset_Click(object sender, EventArgs e)
         {
-            label_example.Font = new Font("Consolas", 11);
-            label_example.BackColor = Color.FromArgb(30, 30, 30);
-            label_example.ForeColor = Color.FromArgb(255, 255, 255);
-            SaveSettings();
+            Properties.Settings.Default.Font = new Font("Consolas", 11);
+            Properties.Settings.Default.BackgroundColor = Color.FromArgb(30, 30, 30);
+            Properties.Settings.Default.FontColor = Color.FromArgb(255, 255, 255);
+            Properties.Settings.Default.pyColor = Color.FromArgb(86, 156, 214);
             ApplySettings();
+            SaveSettings();
         }
 
         private void mainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(File.Exists(path))
+            if(File.Exists(Properties.Settings.Default.pyTempPath))
             {
                 //File.Delete(path);
+            }
+        }
+
+        private void button_syntax_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.pyColor = colorDialog.Color;
+                SaveSettings();
+                ApplySettings();
+                HighlightText();
             }
         }
     }

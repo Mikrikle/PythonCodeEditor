@@ -41,13 +41,16 @@
             this.tab_editor = new System.Windows.Forms.TabPage();
             this.codeEditor = new System.Windows.Forms.RichTextBox();
             this.tab_shortcuts = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.label_shortcuts = new System.Windows.Forms.Label();
             this.tab_settings = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label_example = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button_reset = new System.Windows.Forms.Button();
+            this.label_example = new System.Windows.Forms.RichTextBox();
             this.table_settings = new System.Windows.Forms.TableLayoutPanel();
+            this.button_syntax = new System.Windows.Forms.Button();
+            this.label_syntax = new System.Windows.Forms.Label();
             this.label_fontColor = new System.Windows.Forms.Label();
             this.button_fontColor = new System.Windows.Forms.Button();
             this.button_bgColor = new System.Windows.Forms.Button();
@@ -56,11 +59,10 @@
             this.label_font = new System.Windows.Forms.Label();
             this.label_settings = new System.Windows.Forms.Label();
             this.imageList_tabs = new System.Windows.Forms.ImageList(this.components);
-            this.colorDialog_font = new System.Windows.Forms.ColorDialog();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.colorDialog_bg = new System.Windows.Forms.ColorDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.panel1.SuspendLayout();
@@ -224,6 +226,7 @@
             // tab_shortcuts
             // 
             this.tab_shortcuts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.tab_shortcuts.Controls.Add(this.label2);
             this.tab_shortcuts.Controls.Add(this.label_shortcuts);
             this.tab_shortcuts.ImageIndex = 0;
             this.tab_shortcuts.Location = new System.Drawing.Point(4, 4);
@@ -232,6 +235,20 @@
             this.tab_shortcuts.Size = new System.Drawing.Size(928, 469);
             this.tab_shortcuts.TabIndex = 1;
             this.tab_shortcuts.Text = "Shortcuts";
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Location = new System.Drawing.Point(3, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(922, 440);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "\"str\" + tab -> ...\r\np -> print(f\\\"{}\\\")\r\nfor -> for i in range():\r\nforfor -> for " +
+    "i in range():\\n for j in range():\r\n\r\n\r\n";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label_shortcuts
             // 
@@ -264,8 +281,8 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.label_example, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label_example, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(463, 26);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -274,17 +291,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 213F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(462, 440);
             this.tableLayoutPanel2.TabIndex = 3;
-            // 
-            // label_example
-            // 
-            this.label_example.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.label_example.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_example.ForeColor = System.Drawing.SystemColors.Control;
-            this.label_example.Location = new System.Drawing.Point(3, 0);
-            this.label_example.Name = "label_example";
-            this.label_example.Size = new System.Drawing.Size(456, 227);
-            this.label_example.TabIndex = 0;
-            this.label_example.Text = "print(\"hello world\")\r\n\r\nfor i in range(10):\r\n    print(i)\r\n    ";
             // 
             // panel2
             // 
@@ -308,11 +314,26 @@
             this.button_reset.UseVisualStyleBackColor = true;
             this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
             // 
+            // label_example
+            // 
+            this.label_example.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label_example.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label_example.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_example.ForeColor = System.Drawing.Color.White;
+            this.label_example.Location = new System.Drawing.Point(3, 3);
+            this.label_example.Name = "label_example";
+            this.label_example.ReadOnly = true;
+            this.label_example.Size = new System.Drawing.Size(456, 221);
+            this.label_example.TabIndex = 8;
+            this.label_example.Text = "print(\"hello world\")\n\nfor i in range(10):\n    print(i)\n    \n";
+            // 
             // table_settings
             // 
             this.table_settings.ColumnCount = 2;
             this.table_settings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.table_settings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.table_settings.Controls.Add(this.button_syntax, 1, 3);
+            this.table_settings.Controls.Add(this.label_syntax, 0, 3);
             this.table_settings.Controls.Add(this.label_fontColor, 0, 0);
             this.table_settings.Controls.Add(this.button_fontColor, 1, 0);
             this.table_settings.Controls.Add(this.button_bgColor, 1, 1);
@@ -322,13 +343,38 @@
             this.table_settings.Dock = System.Windows.Forms.DockStyle.Left;
             this.table_settings.Location = new System.Drawing.Point(3, 26);
             this.table_settings.Name = "table_settings";
-            this.table_settings.RowCount = 4;
+            this.table_settings.RowCount = 5;
             this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.table_settings.Size = new System.Drawing.Size(460, 440);
             this.table_settings.TabIndex = 2;
+            // 
+            // button_syntax
+            // 
+            this.button_syntax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_syntax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_syntax.ForeColor = System.Drawing.SystemColors.Control;
+            this.button_syntax.Location = new System.Drawing.Point(234, 195);
+            this.button_syntax.Name = "button_syntax";
+            this.button_syntax.Size = new System.Drawing.Size(223, 58);
+            this.button_syntax.TabIndex = 7;
+            this.button_syntax.Text = "select";
+            this.button_syntax.UseVisualStyleBackColor = true;
+            this.button_syntax.Click += new System.EventHandler(this.button_syntax_Click);
+            // 
+            // label_syntax
+            // 
+            this.label_syntax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_syntax.ForeColor = System.Drawing.SystemColors.Control;
+            this.label_syntax.Location = new System.Drawing.Point(3, 192);
+            this.label_syntax.Name = "label_syntax";
+            this.label_syntax.Size = new System.Drawing.Size(225, 64);
+            this.label_syntax.TabIndex = 6;
+            this.label_syntax.Text = "Syntax highlighting";
+            this.label_syntax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_fontColor
             // 
@@ -419,11 +465,11 @@
             this.imageList_tabs.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList_tabs.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList_tabs.ImageStream")));
             this.imageList_tabs.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList_tabs.Images.SetKeyName(0, "tab.png");
+            this.imageList_tabs.Images.SetKeyName(0, "tab_icon.png");
             // 
-            // colorDialog_font
+            // colorDialog
             // 
-            this.colorDialog_font.Color = System.Drawing.SystemColors.Control;
+            this.colorDialog.Color = System.Drawing.SystemColors.Control;
             // 
             // tableLayoutPanel1
             // 
@@ -464,10 +510,6 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "select";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // colorDialog1
-            // 
-            this.colorDialog1.Color = System.Drawing.SystemColors.Control;
             // 
             // colorDialog_bg
             // 
@@ -523,21 +565,23 @@
         private TableLayoutPanel table_settings;
         private Label label_fontColor;
         private Button button_fontColor;
-        private ColorDialog colorDialog_font;
+        private ColorDialog colorDialog;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel1;
         private Label label1;
         private Button button1;
-        private Label label_example;
         private Button button_bgColor;
         private Button button_font;
         private Label label_bgColor;
         private Label label_font;
-        private ColorDialog colorDialog1;
         private ColorDialog colorDialog_bg;
         private FontDialog fontDialog;
         private Panel panel2;
         private Button button_reset;
         private RichTextBox codeEditor;
+        private Label label2;
+        private Button button_syntax;
+        private Label label_syntax;
+        private RichTextBox label_example;
     }
 }
