@@ -7,6 +7,8 @@ namespace PythonCodeEditor
 
     public partial class mainWindow : Form
     {
+        private string FileName { get; set; }
+
         private static readonly string[] pyKeyWords = {
             "False", "class", "from",
             "or", "None", "continue",
@@ -70,7 +72,7 @@ namespace PythonCodeEditor
 
                 TryRun(
                     "python.exe",
-                    "-i " + Directory.GetCurrentDirectory() + @"\" + Properties.Settings.Default.pyTempPath,
+                    "-i " + FileName,
                     "python.exe not found"
                     );
             }
@@ -163,11 +165,12 @@ namespace PythonCodeEditor
 
         public mainWindow()
         {
-            highlightTimer.Interval = 3000;
+            highlightTimer.Interval = 1000;
             highlightTimer.Tick += new EventHandler(HighlightText);
             highlightTimer.Start();
             InitializeComponent();
-            
+            FileName = Directory.GetCurrentDirectory() + @"\" + Properties.Settings.Default.pyTempPath;
+            toolStripStatusLabel1.Text = FileName;
         }
 
         private void button_run_Click(object sender, EventArgs e)
@@ -228,7 +231,7 @@ namespace PythonCodeEditor
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if(codeEditor.Text.Length > 0)
+                if(codeEditor.Text.Length > 0 && codeEditor.SelectionStart > 0)
                 {
                     int ifAddTab = codeEditor.Text[codeEditor.SelectionStart - 1] == ':'?1:0;
                     string sTabs = "";
@@ -335,10 +338,10 @@ namespace PythonCodeEditor
 
         private void mainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(File.Exists(Properties.Settings.Default.pyTempPath))
-            {
+            //if(File.Exists(Properties.Settings.Default.pyTempPath))
+            //{
                 //File.Delete(path);
-            }
+            //}
         }
 
         private void button_syntax_Click(object sender, EventArgs e)
@@ -349,6 +352,38 @@ namespace PythonCodeEditor
                 SaveSettings();
                 ApplySettings();
                 HighlightText();
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Python files (*.py)|*.py|All files (*.*)|*.*";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    FileName = openFileDialog.FileName;
+                    toolStripStatusLabel1.Text = FileName;
+                    codeEditor.Text = File.ReadAllText(FileName);
+                    HighlightText();
+                }
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(FileName, codeEditor.Text);
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Python files (*.py)|*.py|All files (*.*)|*.*";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(saveFileDialog.FileName, codeEditor.Text);
+                }
             }
         }
     }

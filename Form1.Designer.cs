@@ -65,6 +65,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.colorDialog_bg = new System.Windows.Forms.ColorDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_editor.SuspendLayout();
@@ -74,6 +81,8 @@
             this.panel2.SuspendLayout();
             this.table_settings.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -86,9 +95,9 @@
             this.panel1.Controls.Add(this.button_python);
             this.panel1.Controls.Add(this.button_run);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(64, 495);
+            this.panel1.Size = new System.Drawing.Size(64, 467);
             this.panel1.TabIndex = 2;
             // 
             // button_editor
@@ -97,7 +106,7 @@
             this.button_editor.FlatAppearance.BorderSize = 0;
             this.button_editor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_editor.Image = global::PythonCodeEditor.Properties.Resources.Edit;
-            this.button_editor.Location = new System.Drawing.Point(0, 303);
+            this.button_editor.Location = new System.Drawing.Point(0, 275);
             this.button_editor.Margin = new System.Windows.Forms.Padding(0);
             this.button_editor.Name = "button_editor";
             this.button_editor.Size = new System.Drawing.Size(64, 64);
@@ -111,7 +120,7 @@
             this.button_shortcuts.FlatAppearance.BorderSize = 0;
             this.button_shortcuts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_shortcuts.Image = global::PythonCodeEditor.Properties.Resources.Keyboard;
-            this.button_shortcuts.Location = new System.Drawing.Point(0, 367);
+            this.button_shortcuts.Location = new System.Drawing.Point(0, 339);
             this.button_shortcuts.Margin = new System.Windows.Forms.Padding(0);
             this.button_shortcuts.Name = "button_shortcuts";
             this.button_shortcuts.Size = new System.Drawing.Size(64, 64);
@@ -125,7 +134,7 @@
             this.button_settings.FlatAppearance.BorderSize = 0;
             this.button_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_settings.Image = global::PythonCodeEditor.Properties.Resources.Settings;
-            this.button_settings.Location = new System.Drawing.Point(0, 431);
+            this.button_settings.Location = new System.Drawing.Point(0, 403);
             this.button_settings.Margin = new System.Windows.Forms.Padding(0);
             this.button_settings.Name = "button_settings";
             this.button_settings.Size = new System.Drawing.Size(64, 64);
@@ -184,13 +193,13 @@
             this.tab_main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab_main.ImageList = this.imageList_tabs;
             this.tab_main.ItemSize = new System.Drawing.Size(18, 18);
-            this.tab_main.Location = new System.Drawing.Point(64, 0);
+            this.tab_main.Location = new System.Drawing.Point(64, 28);
             this.tab_main.Margin = new System.Windows.Forms.Padding(0);
             this.tab_main.Multiline = true;
             this.tab_main.Name = "tab_main";
             this.tab_main.Padding = new System.Drawing.Point(0, 0);
             this.tab_main.SelectedIndex = 0;
-            this.tab_main.Size = new System.Drawing.Size(936, 495);
+            this.tab_main.Size = new System.Drawing.Size(936, 467);
             this.tab_main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tab_main.TabIndex = 5;
             // 
@@ -203,7 +212,7 @@
             this.tab_editor.Location = new System.Drawing.Point(4, 4);
             this.tab_editor.Margin = new System.Windows.Forms.Padding(0);
             this.tab_editor.Name = "tab_editor";
-            this.tab_editor.Size = new System.Drawing.Size(928, 469);
+            this.tab_editor.Size = new System.Drawing.Size(928, 441);
             this.tab_editor.TabIndex = 0;
             this.tab_editor.Text = "Editor";
             // 
@@ -215,7 +224,7 @@
             this.codeEditor.ForeColor = System.Drawing.Color.White;
             this.codeEditor.Location = new System.Drawing.Point(0, 0);
             this.codeEditor.Name = "codeEditor";
-            this.codeEditor.Size = new System.Drawing.Size(928, 469);
+            this.codeEditor.Size = new System.Drawing.Size(928, 441);
             this.codeEditor.TabIndex = 0;
             this.codeEditor.Text = "";
             this.codeEditor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.codeEditor_KeyDown);
@@ -232,7 +241,7 @@
             this.tab_shortcuts.Location = new System.Drawing.Point(4, 4);
             this.tab_shortcuts.Name = "tab_shortcuts";
             this.tab_shortcuts.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_shortcuts.Size = new System.Drawing.Size(928, 469);
+            this.tab_shortcuts.Size = new System.Drawing.Size(928, 441);
             this.tab_shortcuts.TabIndex = 1;
             this.tab_shortcuts.Text = "Shortcuts";
             // 
@@ -244,7 +253,7 @@
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.Location = new System.Drawing.Point(3, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(922, 440);
+            this.label2.Size = new System.Drawing.Size(922, 412);
             this.label2.TabIndex = 1;
             this.label2.Text = "\"str\" + tab -> ...\r\np -> print(f\\\"{}\\\")\r\nfor -> for i in range():\r\nforfor -> for " +
     "i in range():\\n for j in range():\r\n\r\n\r\n";
@@ -272,7 +281,7 @@
             this.tab_settings.Location = new System.Drawing.Point(4, 4);
             this.tab_settings.Name = "tab_settings";
             this.tab_settings.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_settings.Size = new System.Drawing.Size(928, 469);
+            this.tab_settings.Size = new System.Drawing.Size(928, 441);
             this.tab_settings.TabIndex = 2;
             this.tab_settings.Text = "Settings";
             // 
@@ -289,14 +298,14 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 213F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(462, 440);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(462, 412);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.button_reset);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 230);
+            this.panel2.Location = new System.Drawing.Point(3, 202);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(456, 207);
             this.panel2.TabIndex = 1;
@@ -323,7 +332,7 @@
             this.label_example.Location = new System.Drawing.Point(3, 3);
             this.label_example.Name = "label_example";
             this.label_example.ReadOnly = true;
-            this.label_example.Size = new System.Drawing.Size(456, 221);
+            this.label_example.Size = new System.Drawing.Size(456, 193);
             this.label_example.TabIndex = 8;
             this.label_example.Text = "print(\"hello world\")\n\nfor i in range(10):\n    print(i)\n    \n";
             // 
@@ -349,7 +358,7 @@
             this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.table_settings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.table_settings.Size = new System.Drawing.Size(460, 440);
+            this.table_settings.Size = new System.Drawing.Size(460, 412);
             this.table_settings.TabIndex = 2;
             // 
             // button_syntax
@@ -520,15 +529,81 @@
             this.fontDialog.Color = System.Drawing.SystemColors.Control;
             this.fontDialog.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1000, 28);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem});
+            this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveAsToolStripMenuItem.Text = "Save as";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(64, 469);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(936, 26);
+            this.statusStrip1.TabIndex = 7;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.White;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(143, 20);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel";
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(1000, 495);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tab_main);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "mainWindow";
             this.Text = "PySharp";
@@ -543,7 +618,12 @@
             this.panel2.ResumeLayout(false);
             this.table_settings.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -583,5 +663,12 @@
         private Button button_syntax;
         private Label label_syntax;
         private RichTextBox label_example;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripMenuItem saveAsToolStripMenuItem;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
