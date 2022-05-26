@@ -386,5 +386,13 @@ namespace PythonCodeEditor
                 }
             }
         }
+
+        private void openTempToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileName = Directory.GetCurrentDirectory() + @"\" + Properties.Settings.Default.pyTempPath;
+            toolStripStatusLabel1.Text = FileName;
+            codeEditor.Text = File.ReadAllText(FileName);
+            HighlightText();
+        }
     }
 }

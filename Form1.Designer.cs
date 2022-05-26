@@ -72,6 +72,7 @@
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.openTempToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_editor.SuspendLayout();
@@ -545,6 +546,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
+            this.openTempToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem});
             this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
@@ -591,6 +593,13 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(143, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel";
+            // 
+            // openTempToolStripMenuItem
+            // 
+            this.openTempToolStripMenuItem.Name = "openTempToolStripMenuItem";
+            this.openTempToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openTempToolStripMenuItem.Text = "Open temp";
+            this.openTempToolStripMenuItem.Click += new System.EventHandler(this.openTempToolStripMenuItem_Click);
             // 
             // mainWindow
             // 
@@ -670,5 +679,6 @@
         private ToolStripMenuItem saveAsToolStripMenuItem;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripMenuItem openTempToolStripMenuItem;
     }
 }
