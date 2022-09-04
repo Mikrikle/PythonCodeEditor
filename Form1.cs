@@ -145,7 +145,6 @@ namespace PythonCodeEditor
             }
             codeEditor.DeselectAll();
             codeEditor.SelectionStart = pos;
-            codeEditor.ScrollToCaret();
             highlightTimer.Stop();
         }
 
@@ -191,7 +190,6 @@ namespace PythonCodeEditor
         private void codeEditor_KeyUp(object sender, KeyEventArgs e)
         {
             highlightTimer.Start();
-            //HighlightText();
         }
 
         private void codeEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -357,7 +355,7 @@ namespace PythonCodeEditor
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using(OpenFileDialog openFileDialog = new OpenFileDialog())
+            using(OpenFileDialog openFileDialog = new())
             {
                 openFileDialog.Filter = "Python files (*.py)|*.py|All files (*.*)|*.*";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -377,7 +375,7 @@ namespace PythonCodeEditor
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            using (SaveFileDialog saveFileDialog = new())
             {
                 saveFileDialog.Filter = "Python files (*.py)|*.py|All files (*.*)|*.*";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -390,9 +388,12 @@ namespace PythonCodeEditor
         private void openTempToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileName = Directory.GetCurrentDirectory() + @"\" + Properties.Settings.Default.pyTempPath;
-            toolStripStatusLabel1.Text = FileName;
-            codeEditor.Text = File.ReadAllText(FileName);
-            HighlightText();
+            if (File.Exists(FileName))
+            {
+                toolStripStatusLabel1.Text = FileName;
+                codeEditor.Text = File.ReadAllText(FileName);
+                HighlightText();
+            }
         }
     }
 }
