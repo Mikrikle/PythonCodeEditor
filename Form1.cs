@@ -121,7 +121,7 @@ namespace PythonCodeEditor
 
         private System.Windows.Forms.Timer highlightTimer = new System.Windows.Forms.Timer();
 
-        private void HighlightText(object sender, EventArgs e)
+        private void HighlightText(object? sender, EventArgs e)
         {
             HighlightText();
         }
